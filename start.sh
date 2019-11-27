@@ -25,3 +25,9 @@
   sudo dpkg -i googlechrome.deb
   sudo apt install -f -y
 
+  echo "\n\e[01;36mBaixando Microsoft Visual Studio Code...\e[00m\n"
+  wget https://go.microsoft.com/fwlink/?LinkID=760868 -O visualcode.deb
+  echo "\n\e[01;36mInstalando o Microsoft Visual Studio Code...\e[00m\n"
+  sudo dpkg -i visualcode.deb
+  sudo apt install -f -y
+
