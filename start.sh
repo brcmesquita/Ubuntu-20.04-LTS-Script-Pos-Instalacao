@@ -19,3 +19,9 @@
   echo "\n\e[01;36mInstalando Git...\e[00m\n"
   sudo apt install git -y
 
+  echo "\n\e[01;36mBaixando Google Chrome...\e[00m\n"
+  wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -O googlechrome.deb
+  echo "\n\e[01;36mInstalando Google Chrome ...\e[00m\n"
+  sudo dpkg -i googlechrome.deb
+  sudo apt install -f -y
+
