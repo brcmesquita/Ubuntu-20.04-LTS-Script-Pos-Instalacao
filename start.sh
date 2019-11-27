@@ -1,3 +1,5 @@
+#!/bin/bash
+
 #### UBUNTU SIMPLE POST INSTALLATION SCRIPT
 
 ## Just Run "start.sh"
