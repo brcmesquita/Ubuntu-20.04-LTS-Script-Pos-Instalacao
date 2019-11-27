@@ -31,3 +31,9 @@
   sudo dpkg -i visualcode.deb
   sudo apt install -f -y
 
+  echo "\n\e[01;36mBaixando Gitkraken...\e[00m\n"
+  wget https://release.gitkraken.com/linux/gitkraken-amd64.deb
+  echo "\n\e[01;36mInstalando Gitkraken...\e[00m\n"
+  sudo dpkg -i gitkraken-amd64.deb
+  sudo apt install -fy
+
