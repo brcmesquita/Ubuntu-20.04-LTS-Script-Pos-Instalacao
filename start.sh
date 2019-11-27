@@ -69,4 +69,11 @@ echo "export NVM_DIR="$HOME/.nvm"
   sudo apt-get update
   sudo apt-get install dotnet-sdk-3.0
 
+  #echo "\n\e[01;36mBaixando XAMPP (Apache, PHP 7.3 e MariaDB)...\e[00m\n"
+  #wget https://sourceforge.net/projects/xampp/files/latest/download -O xampp.run
+  #sudo chmod +x xampp.run
+  #sudo ./xampp.run &
+
+  # echo "\n\e[01;36mInstalando Docker...\e[00m\n"
+
   # echo "\n\e[01;36m ...\e[00m\n"
