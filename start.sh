@@ -39,7 +39,7 @@
   sudo dpkg -i gitkraken-amd64.deb
   sudo apt install -fy
 
-  echo "\n\e[01;36m ...\e[00m\n"
+  echo "\n\e[01;36mInstalando NVM...\e[00m\n"
   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.1/install.sh | bash
 
   if [ -f ~/.zshrc ] # -f for files, -d for directories
