@@ -14,4 +14,8 @@
   echo "\n\e[01;36mRemovendo pacotes que não são mais necessários...\e[00m\n"
   sudo apt autoremove -y
 
-  
+  echo "\n\e[01;36mAdicionando repositório do Git na lista...\e[00m\n"
+  sudo add-apt-repository ppa:git-core/ppa -y
+  echo "\n\e[01;36mInstalando Git...\e[00m\n"
+  sudo apt install git -y
+
