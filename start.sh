@@ -19,6 +19,9 @@
   echo "\n\e[01;36mInstalando Curl...\e[00m\n"
   sudo apt install curl -y
 
+  echo "\n\e[01;36mInstalando Software Properties Common...\e[00m\n"
+  sudo apt install software-properties-common -y
+
   echo "\n\e[01;36mAdicionando repositório do Git na lista...\e[00m\n"
   sudo add-apt-repository ppa:git-core/ppa -y
   echo "\n\e[01;36mInstalando Git...\e[00m\n"
@@ -75,8 +78,16 @@ echo "export NVM_DIR="$HOME/.nvm"
   sudo apt remove docker docker-engine docker.io containerd runc -y
   sudo apt autoremove -y
 
+  echo "\n\e[01;36mConfigurando o repositório do Docker...\e[00m\n"
+  sudo apt update
+  sudo apt install apt-transport-https ca-certificates curl gnupg-agent software-properties-common -y
+  curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+  # Warning: Using Disco Dingo Repository
+  sudo add-apt-repository -y "deb [arch=amd64] https://download.docker.com/linux/ubuntu disco stable"
+  sudo apt update
+
   echo "\n\e[01;36mInstalando Docker...\e[00m\n"
-  
+  sudo apt install docker-ce docker-ce-cli containerd.io -y
 
 
 
