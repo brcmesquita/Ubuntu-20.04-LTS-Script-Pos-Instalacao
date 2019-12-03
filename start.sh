@@ -16,6 +16,9 @@
   echo "\n\e[01;36mRemovendo pacotes que não são mais necessários...\e[00m\n"
   sudo apt autoremove -y
 
+  echo "\n\e[01;36mInstalando Curl...\e[00m\n"
+  sudo apt install curl -y
+
   echo "\n\e[01;36mAdicionando repositório do Git na lista...\e[00m\n"
   sudo add-apt-repository ppa:git-core/ppa -y
   echo "\n\e[01;36mInstalando Git...\e[00m\n"
@@ -55,25 +58,41 @@ echo "export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion" >> ~/.bashrc
   fi
 
+  echo "\n\e[01;36mInstalando Node (via NVM)...\e[00m\n"
+  nvm install node
+
   echo "\n\e[01;36mInstalando o Yarn...\e[00m\n"
   curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
   echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
   sudo apt update
   sudo apt install --no-install-recommends yarn
 
-  echo "\n\e[01;36mInstalando o dotNET 3.0 SDK...\e[00m\n"
-  wget -q https://packages.microsoft.com/config/ubuntu/19.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
-  sudo dpkg -i packages-microsoft-prod.deb
-  sudo apt-get update
-  sudo apt-get install apt-transport-https
-  sudo apt-get update
-  sudo apt-get install dotnet-sdk-3.0
+  echo "\n\e[01;36mInstalando Create-React-App (Node/NPM)...\e[00m\n"
+  npm install -g create-react-app
 
-  #echo "\n\e[01;36mBaixando XAMPP (Apache, PHP 7.3 e MariaDB)...\e[00m\n"
-  #wget https://sourceforge.net/projects/xampp/files/latest/download -O xampp.run
-  #sudo chmod +x xampp.run
-  #sudo ./xampp.run &
+  echo "\n\e[01;36mIniciando Instalação do Docker...\e[00m\n"
+  echo "\n\e[01;36mRemovendo instalações anteriores do Docker...\e[00m\n"
+  sudo apt remove docker docker-engine docker.io containerd runc -y
+  sudo apt autoremove -y
 
-  # echo "\n\e[01;36mInstalando Docker...\e[00m\n"
+  echo "\n\e[01;36mInstalando Docker...\e[00m\n"
+  
+
+
+
+  # echo "\n\e[01;36mInstalando o dotNET 3.0 SDK...\e[00m\n"
+  # wget -q https://packages.microsoft.com/config/ubuntu/19.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+  # sudo dpkg -i packages-microsoft-prod.deb
+  # sudo apt-get update
+  # sudo apt-get install apt-transport-https
+  # sudo apt-get update
+  # sudo apt-get install dotnet-sdk-3.0
+
+  # echo "\n\e[01;36mBaixando XAMPP (Apache, PHP 7.3 e MariaDB)...\e[00m\n"
+  # wget https://sourceforge.net/projects/xampp/files/latest/download -O xampp.run
+  # sudo chmod +x xampp.run
+  # sudo ./xampp.run &
+
+  
 
   # echo "\n\e[01;36m ...\e[00m\n"
