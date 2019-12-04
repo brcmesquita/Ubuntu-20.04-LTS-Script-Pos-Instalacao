@@ -89,8 +89,23 @@ echo "export NVM_DIR="$HOME/.nvm"
   echo "\n\e[01;36mInstalando Docker...\e[00m\n"
   sudo apt install docker-ce docker-ce-cli containerd.io -y
 
+  echo "\n\e[01;36mConfigurando permissões para o Docker...\e[00m\n"
+  sudo usermod -aG docker $USER
+  newgrp docker
+  
+  echo "\n\e[01;36mBaixando e instalando o Docker Compose...\e[00m\n"
+  curl -s https://api.github.com/repos/docker/compose/releases/latest \
+  | grep browser_download_url \
+  | grep docker-compose-Linux-x86_64 \
+  | cut -d '"' -f 4 \
+  | wget -qi -
+  chmod +x docker-compose-Linux-x86_64
+  sudo mv docker-compose-Linux-x86_64 /usr/local/bin/docker-compose
 
-
+  echo "\n\e[01;36mInstalando o Command-line completion para o Docker Compose...\e[00m\n"
+  mkdir -p ~/.zsh/completion
+  curl -L https://raw.githubusercontent.com/docker/compose/master/contrib/completion/zsh/_docker-compose > ~/.zsh/completion/_docker-compose
+  
   # echo "\n\e[01;36mInstalando o dotNET 3.0 SDK...\e[00m\n"
   # wget -q https://packages.microsoft.com/config/ubuntu/19.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
   # sudo dpkg -i packages-microsoft-prod.deb
