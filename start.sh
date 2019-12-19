@@ -1,8 +1,10 @@
 #!/bin/bash
 
+#### UNDER CONSTRUCTION !!!!!!!!!!
+
 #### UBUNTU SIMPLE POST INSTALLATION SCRIPT
 
-## Just Run "start.sh"
+## Just download and run "sudo ./start.sh"
 
 ## Created by Raphael Cabral
 ## Nov/26/2019
@@ -16,22 +18,45 @@
   echo "\n\e[01;36mRemovendo pacotes que não são mais necessários...\e[00m\n"
   sudo apt autoremove -y
 
-  echo "\n\e[01;36mInstalando Curl...\e[00m\n"
+  echo "\n\e[01;36mInstalando cURL...\e[00m\n"
   sudo apt install curl -y
 
   echo "\n\e[01;36mInstalando Software Properties Common...\e[00m\n"
   sudo apt install software-properties-common -y
 
   echo "\n\e[01;36mAdicionando repositório do Git na lista...\e[00m\n"
-  sudo add-apt-repository ppa:git-core/ppa -y
+  sudo add-apt-repository -y ppa:git-core/ppa
   echo "\n\e[01;36mInstalando Git...\e[00m\n"
   sudo apt install git -y
+
+  echo "\n\e[01;36mInstalando fontes Powerline...\e[00m\n"
+  sudo apt install fonts-powerline -y
+
+  echo "\n\e[01;36mInstalando fontes da Microsoft...\e[00m\n"
+  sudo apt install ttf-mscorefonts-installer -y
+
+  echo "\n\e[01;36mInstalando fontes Fira Code...\e[00m\n"
+  wget https://github.com/tonsky/FiraCode/releases/download/2/FiraCode_2.zip
+  unzip FiraCode_2.zip
+  mkdir -p ~/.fonts
+  mv ttf/* ~/.fonts
+
+  sudo apt install -y vlc
+  sudo apt install -y ffmpeg
+  sudo apt install -y lame
+
+  sudo add-apt-repository -y ppa:obsproject/obs-studio
+  sudo apt install -y obs-studio
+
+  
 
   echo "\n\e[01;36mBaixando Google Chrome...\e[00m\n"
   wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -O googlechrome.deb
   echo "\n\e[01;36mInstalando Google Chrome ...\e[00m\n"
   sudo dpkg -i googlechrome.deb
   sudo apt install -f -y
+
+sudo apt install -y qbittorrent
 
   echo "\n\e[01;36mBaixando Microsoft Visual Studio Code...\e[00m\n"
   wget https://go.microsoft.com/fwlink/?LinkID=760868 -O visualcode.deb
@@ -47,19 +72,9 @@
 
   echo "\n\e[01;36mInstalando NVM (NodeJS Version Manager )...\e[00m\n"
   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.1/install.sh | bash
-
-  # If you have ZSH installed and/or Oh-My-ZSH, it will export to them. Otherwise, it will be exported to bash (default terminal)
-  if [ -f ~/.zshrc ] # -f for files, -d for directories
-  then
-  echo "\n\e[01;33mZSH detectado. Vou configurar o NVM para funcionar no ZSH...\e[00m\n"
-echo "export NVM_DIR="$HOME/.nvm"
+export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion" >> ~/.zshrc
-  else
-echo "export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion" >> ~/.bashrc
-  fi
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
   echo "\n\e[01;36mInstalando Node (via NVM)...\e[00m\n"
   nvm install node
@@ -73,21 +88,12 @@ echo "export NVM_DIR="$HOME/.nvm"
   echo "\n\e[01;36mInstalando Create-React-App (Node/NPM)...\e[00m\n"
   npm install -g create-react-app
 
-  echo "\n\e[01;36mIniciando Instalação do Docker...\e[00m\n"
-  echo "\n\e[01;36mRemovendo instalações anteriores do Docker...\e[00m\n"
-  sudo apt remove docker docker-engine docker.io containerd runc -y
-  sudo apt autoremove -y
-
-  echo "\n\e[01;36mConfigurando o repositório do Docker...\e[00m\n"
-  sudo apt update
-  sudo apt install apt-transport-https ca-certificates curl gnupg-agent software-properties-common -y
-  curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-  # Warning: Using Disco Dingo Repository
-  sudo add-apt-repository -y "deb [arch=amd64] https://download.docker.com/linux/ubuntu disco stable"
-  sudo apt update
-
   echo "\n\e[01;36mInstalando Docker...\e[00m\n"
-  sudo apt install docker-ce docker-ce-cli containerd.io -y
+  sudo apt install apt-transport-https ca-certificates curl software-properties-common -y
+  curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+  sudo add-apt-repository -y "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
+  sudo apt update
+  sudo apt install -y docker-ce
 
   echo "\n\e[01;36mConfigurando permissões para o Docker...\e[00m\n"
   sudo usermod -aG docker $USER
@@ -105,7 +111,70 @@ echo "export NVM_DIR="$HOME/.nvm"
   echo "\n\e[01;36mInstalando o Command-line completion para o Docker Compose...\e[00m\n"
   mkdir -p ~/.zsh/completion
   curl -L https://raw.githubusercontent.com/docker/compose/master/contrib/completion/zsh/_docker-compose > ~/.zsh/completion/_docker-compose
-  
+  fpath=(~/.zsh/completion $fpath)
+  autoload -Uz compinit && compinit -i
+  exec $SHELL -l
+
+  # Oracle VM VirtualBox 6
+  wget https://download.virtualbox.org/virtualbox/6.0.14/Oracle_VM_VirtualBox_Extension_Pack-6.0.14.vbox-extpack
+  wget https://download.virtualbox.org/virtualbox/6.0.14/virtualbox-6.0_6.0.14-133895~Ubuntu~bionic_amd64.deb
+  sudo dpkg -i virtualbox-6.0_6.0.14-133895~Ubuntu~bionic_amd64.deb
+  sudo apt install -fy
+  sudo VBoxManage extpack install --replace Oracle_VM_VirtualBox_Extension_Pack-6.0.14.vbox-extpack
+
+  echo "\n\e[01;36mInstalando o ZSH...\e[00m\n"
+  sudo apt install zsh -y 
+
+  echo "\n\e[01;36mInstalando o Oh-My-ZSH...\e[00m\n"
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
+  echo "\n\e[01;36mConfigurando o ZSH para funcionar o NVM...\e[00m\n"
+echo "export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion" >> ~/.zshrc
+
+  echo "\n\e[01;36mConfigurando tema Dracula para o Oh-My-ZSH...\e[00m\n"
+
+  echo "\n\e[01;36mInstalando o dConf...\e[00m\n"
+  sudo apt install dconf-cli -y
+
+  echo "\n\e[01;36mInstalando o Tema Dracula para ZSH...\e[00m\n"
+  cd /tmp
+  git clone https://github.com/GalaticStryder/gnome-terminal-colors-dracula
+  cd gnome-terminal-colors-dracula
+  ./install.sh
+
+  echo "\n\e[01;36mInstalando e Configurando o Tema Spaceship para ZSH...\e[00m\n"
+  git clone https://github.com/denysdovhan/spaceship-prompt.git "$ZSH_CUSTOM/themes/spaceship-prompt"
+  ln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme"
+  sed -i 's,robbyrussell,spaceship,g' ~/.zshrc
+  exec $SHELL -
+  echo "# SPACESHIP
+SPACESHIP_PROMPT_ORDER=(
+  time
+  user          # Username section
+  dir           # Current directory section
+  host          # Hostname section
+  git           # Git section (git_branch + git_status)
+  exec_time     # Execution time
+  line_sep      # Line break
+  jobs          # Background jobs indicator
+  exit_code     # Exit code section
+  char          # Prompt character
+)
+SPACESHIP_TIME_SHOW=true
+SPACESHIP_USER_SHOW=always
+SPACESHIP_PROMPT_ADD_NEWLINE=false
+SPACESHIP_CHAR_SUFFIX=" "" >> ~/.zshrc
+
+  echo "\n\e[01;36mInstalando plugins do ZSH...\e[00m\n"
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma/zplugin/master/doc/install.sh)"
+
+  echo "\n\e[01;36mCongifurando plugins do ZSH...\e[00m\n"
+  echo "# ZPLUGINS
+zplugin light zsh-users/zsh-autosuggestions
+zplugin light zsh-users/zsh-completions" >> ~/.zshrc
+
   # echo "\n\e[01;36mInstalando o dotNET 3.0 SDK...\e[00m\n"
   # wget -q https://packages.microsoft.com/config/ubuntu/19.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
   # sudo dpkg -i packages-microsoft-prod.deb
