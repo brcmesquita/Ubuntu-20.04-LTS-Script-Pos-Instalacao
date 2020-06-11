@@ -18,7 +18,7 @@ Se não quiser instalar alguma coisa, basta comentar a linha usando um "#", como
 ```#sudo apt install -y any-package```
 
 ### How to use
-*Copy & Paste codes below on your terminal, and press Enter.*  
+> *Copy & Paste codes below on your terminal, and press Enter.*  
 
 Download the repository with the command below:  
 ```git clone https://github.com/brcmesquita/ubuntu-post-install.git```
