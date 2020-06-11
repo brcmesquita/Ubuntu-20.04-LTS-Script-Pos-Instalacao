@@ -1,4 +1,4 @@
-# Ubuntu 18.04 LTS (Bionic Beaver) Post Install
+# Ubuntu 18.04 LTS (Bionic Beaver) Post Install Script
 
 ![ubuntu-bionic-beaver](/img/ubuntu-bionic-beaver.png)
 
