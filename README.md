@@ -72,7 +72,7 @@ Run:
 
 and more...
 
-### FAQ :question:
+### FAQ
 **Why just "apt" instead of "apt-get"**  
 *Simple, this is the new way to use.* :wink:
 
