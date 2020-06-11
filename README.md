@@ -1,6 +1,6 @@
 # Ubuntu 18.04 LTS (Bionic Beaver) Post Install
 
-![ubuntu-bionic-beaver](img/ubuntu-bionic-beaver.png)
+![ubuntu-bionic-beaver](/img/ubuntu-bionic-beaver.png)
 Format: ![Alt text](Ubuntu Bionic Beaver Logo)
 
 
