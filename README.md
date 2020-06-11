@@ -11,7 +11,7 @@ This repository installs the basics for those who want a Linux Ubuntu for web de
 
 #### Em Português
 Este repositório contém um script de pós instalação para o Linux Ubuntu 18.04 LTS.  
-Este repositório instala o básico para quem deseja um Linux Ubuntu para desenvolvimento Web com HTML, CSS, JS, NodeJS, ReactJS.  
+Este repositório instala o básico para quem deseja um Linux Ubuntu para desenvolvimento web com HTML, CSS, JS, NodeJS, ReactJS.  
 
 ### How to use
 > *Copy & Paste codes below on your terminal, and press Enter.*  
@@ -89,6 +89,6 @@ and more...
 **Can I use this script in my distribution that is not Ubuntu, but is Ubuntu-like, like Deepin, Mint, elementary OS etc?**  
 *Check the version of Ubuntu your distro uses. If it's Ubuntu 18.04, you can use it without fear. If not, it follows the same answer as the previous question.*
 
-**I don't use Ubuntu, and my distro is not Ubuntu-like. Can I use this script?**
+**I don't use Ubuntu, and my distro is not Ubuntu-like. Can I use this script?**  
 *No. You can only use it as a reference to create your own shell script, replacing it as needed. The way to run the script is the same in all distros:*  
 ```./your-script.sh```
