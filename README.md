@@ -8,10 +8,12 @@
 #### In English
 This repository contains a post installation script for Linux Ubuntu 18.04 LTS.  
 This repository installs the basics for those who want a Linux Ubuntu for web development with HTML, CSS, JS, NodeJS, ReactJS.  
+This script was created to automate the download and installation processes of packages (applications). With this script, just run it and wait for it to finish. In the end, everything will be installed and you will be able to use it.  
 
 #### Em Português
 Este repositório contém um script de pós instalação para o Linux Ubuntu 18.04 LTS.  
 Este repositório instala o básico para quem deseja um Linux Ubuntu para desenvolvimento web com HTML, CSS, JS, NodeJS, ReactJS.  
+Esse script foi criado para automatizar os processos de download e instalação dos pacotes (aplicativos). Com este script, basta rodá-lo e aguardar o seu término. Ao fim, tudo estará instalado e você já poderá sair utilizando.  
 
 ### How to use
 > *Copy & Paste codes below on your terminal, and press Enter.*  
