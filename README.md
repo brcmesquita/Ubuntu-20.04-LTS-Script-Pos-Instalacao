@@ -13,7 +13,7 @@ This script was created to automate the download and installation processes of p
 #### Em Português
 Este repositório contém um script de pós instalação para o Linux Ubuntu 18.04 LTS.  
 Este script instala o básico para quem deseja um Linux Ubuntu para desenvolvimento web com HTML, CSS, JS, NodeJS, ReactJS.  
-Esse script foi criado para automatizar os processos de download e instalação dos pacotes (aplicativos). Com este script, basta rodá-lo e aguardar o seu término. Ao fim, tudo estará instalado e você já poderá sair utilizando.  
+Este script foi criado para automatizar os processos de download e instalação dos pacotes (aplicativos). Com este script, basta rodá-lo e aguardar o seu término. Ao fim, tudo estará instalado e você já poderá sair utilizando.  
 
 ### How to use
 > *Copy & Paste codes below on your terminal, and press Enter.*  
