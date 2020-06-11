@@ -1,4 +1,8 @@
-# Ubuntu 18.04 LTS (Bionic Beaver) Post Install 
+# Ubuntu 18.04 LTS (Bionic Beaver) Post Install
+
+![ubuntu-bionic-beaver](img/ubuntu-bionic-beaver.png)
+Format: ![Alt text](Ubuntu Bionic Beaver Logo)
+
 
 :computer: **Need review** :penguin:  
 
@@ -20,7 +24,7 @@ Download the repository with the command below:
 ```git clone https://github.com/brcmesquita/ubuntu-post-install.git```
 
 Open the folder:  
-```cd ubuntu-post-install```
+```cd ubuntu-post-install/src```
 
 Run:  
 ```./start.sh```
