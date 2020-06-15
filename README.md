@@ -4,7 +4,7 @@
 
 :computer: **Need review** :penguin:  
 
-### Description / Descrição
+# Description / Descrição
 #### In English
 This repository contains a post installation script for Linux Ubuntu 18.04 LTS.  
 This script installs the basics for those who want a Linux Ubuntu for web development with HTML, CSS, JS, NodeJS, ReactJS.  
@@ -15,17 +15,23 @@ Este repositório contém um script de pós instalação para o Linux Ubuntu 18.
 Este script instala o básico para quem deseja um Linux Ubuntu para desenvolvimento web com HTML, CSS, JS, NodeJS, ReactJS.  
 Este script foi criado para automatizar os processos de download e instalação dos pacotes (aplicativos). Com este script, basta rodá-lo e aguardar o seu término. Ao fim, tudo estará instalado e você já poderá sair utilizando.  
 
-### How to use
+# How to use
 > *Copy & Paste codes below on your terminal, and press Enter.*  
 
 Download the repository with the command below:  
-```git clone https://github.com/brcmesquita/ubuntu-post-install.git```
+```
+git clone https://github.com/brcmesquita/ubuntu-post-install.git
+```
 
 Open the folder:  
-```cd ubuntu-post-install/src```
+```
+cd ubuntu-post-install/src
+```
 
 Run:  
-```./start.sh```
+```
+./start.sh
+```
 
 ### What will be installed?
 #### Audio & Video
