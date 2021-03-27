@@ -1,193 +1,286 @@
 #!/bin/bash
 
-#### UNDER CONSTRUCTION !!!!!!!!!!
+#### BETA FOREVER !!!!!!!!!!
 
 #### UBUNTU SIMPLE POST INSTALLATION SCRIPT
 
-## Just download and run "sudo ./start.sh"
+### Just download and run "sudo ./start.sh"
 
-## Created by Raphael Cabral
-## Nov/26/2019
+### CREATED by Bruno Raphael Cabral de Mesquita
+### Nov/26/2019
 
-  cd /tmp
+### UPDATED by Bruno Raphael Cabral de Mesquita
+### Mar/24/2021
 
-  echo "\n\e[01;36mAtualizando lista de repositórios...\e[00m\n"
+cd /tmp
+
+echo "Atualizando lista de repositórios..."
   sudo apt update
-  echo "\n\e[01;36mInicializando a atualização dos pacotes...\e[00m\n"
+
+echo "Inicializando a atualização dos pacotes..."
   sudo apt upgrade -y
-  echo "\n\e[01;36mRemovendo pacotes que não são mais necessários...\e[00m\n"
+
+echo "Removendo pacotes que não são mais necessários..."
   sudo apt autoremove -y
 
-  echo "\n\e[01;36mInstalando cURL...\e[00m\n"
-  sudo apt install curl -y
-
-  echo "\n\e[01;36mInstalando Software Properties Common...\e[00m\n"
+echo "Instalando Software Properties Common..."
   sudo apt install software-properties-common -y
 
-  echo "\n\e[01;36mAdicionando repositório do Git na lista...\e[00m\n"
+echo "Instalando cURL..."
+  sudo apt install -y curl
+
+echo "Instalando o dconf..."
+  sudo apt install -y dconf-cli
+
+echo "Adicionando repositório do Git..."
   sudo add-apt-repository -y ppa:git-core/ppa
-  echo "\n\e[01;36mInstalando Git...\e[00m\n"
+echo "Instalando Git..."
   sudo apt install git -y
 
-  echo "\n\e[01;36mInstalando fontes Powerline...\e[00m\n"
-  sudo apt install fonts-powerline -y
+echo "Instalando o Xterm (necessário para o Steam)..."
+  sudo apt install -y xterm
 
-  echo "\n\e[01;36mInstalando fontes da Microsoft...\e[00m\n"
-  sudo apt install ttf-mscorefonts-installer -y
-
-  echo "\n\e[01;36mInstalando fontes Fira Code...\e[00m\n"
-  wget https://github.com/tonsky/FiraCode/releases/download/2/FiraCode_2.zip
-  unzip FiraCode_2.zip
-  mkdir -p ~/.fonts
-  mv ttf/* ~/.fonts
-
-  sudo apt install -y vlc
-  sudo apt install -y ffmpeg
-  sudo apt install -y lame
-
-  sudo add-apt-repository -y ppa:obsproject/obs-studio
-  sudo apt install -y obs-studio
-
-  
-
-  echo "\n\e[01;36mBaixando Google Chrome...\e[00m\n"
+echo "Baixando o Google Chrome..."
   wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -O googlechrome.deb
-  echo "\n\e[01;36mInstalando Google Chrome ...\e[00m\n"
-  sudo dpkg -i googlechrome.deb
+echo "Instalando o Google Chrome ..."
+  sudo apt install -y ./googlechrome.deb
   sudo apt install -f -y
 
-sudo apt install -y qbittorrent
+echo "Instalando o dotNET 5 SDK..."
+  wget https://packages.microsoft.com/config/ubuntu/18.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+  sudo apt install -y ./packages-microsoft-prod.deb
+  sudo apt update
+  sudo apt install -y apt-transport-https
+  sudo apt update
+  sudo apt install -y dotnet-sdk-5.0
 
-  echo "\n\e[01;36mBaixando Microsoft Visual Studio Code...\e[00m\n"
-  wget https://go.microsoft.com/fwlink/?LinkID=760868 -O visualcode.deb
-  echo "\n\e[01;36mInstalando o Microsoft Visual Studio Code...\e[00m\n"
-  sudo dpkg -i visualcode.deb
+echo "Instalando openJDK 11 JDK (Java 11 JDK)..."
+  sudo apt install -y openjdk-11-jdk
+
+echo "Baixando Microsoft Visual Studio Code..."
+  wget https://go.microsoft.com/fwlink/?LinkID=760868 -O visualcode_$(date +"%Y-%m-%d_%H-%M-%S").deb
+echo "Instalando o Microsoft Visual Studio Code..."
+  sudo apt install -y ./visualcode.deb
   sudo apt install -f -y
 
-  echo "\n\e[01;36mBaixando Gitkraken...\e[00m\n"
+echo "Baixando Gitkraken..."
   wget https://release.gitkraken.com/linux/gitkraken-amd64.deb
-  echo "\n\e[01;36mInstalando Gitkraken...\e[00m\n"
-  sudo dpkg -i gitkraken-amd64.deb
+echo "Instalando Gitkraken..."
+  sudo apt install -y ./gitkraken-amd64.deb
   sudo apt install -fy
 
-  echo "\n\e[01;36mInstalando NVM (NodeJS Version Manager )...\e[00m\n"
-  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.1/install.sh | bash
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+echo "Instalando DBeaver Community..."
+  sudo apt install -y dbeaver-ce
 
-  echo "\n\e[01;36mInstalando Node (via NVM)...\e[00m\n"
-  nvm install node
-
-  echo "\n\e[01;36mInstalando o Yarn...\e[00m\n"
-  curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
-  echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+echo "Instalando Docker..."
+  sudo apt remove docker docker-engine docker.io containerd runc
+  sudo apt install -y apt-transport-https ca-certificates curl gnupg lsb-release
+  curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+  echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
+  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
   sudo apt update
-  sudo apt install --no-install-recommends yarn
+  sudo apt install -y docker-ce docker-ce-cli containerd.io
 
-  echo "\n\e[01;36mInstalando Create-React-App (Node/NPM)...\e[00m\n"
-  npm install -g create-react-app
+#echo "Configurando permissões para o Docker..."
+  #sudo usermod -aG docker $USER
+  #newgrp docker
 
-  echo "\n\e[01;36mInstalando Docker...\e[00m\n"
-  sudo apt install apt-transport-https ca-certificates curl software-properties-common -y
-  curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-  sudo add-apt-repository -y "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
-  sudo apt update
-  sudo apt install -y docker-ce
+#echo "Baixando e instalando o Docker Compose..."
+  #curl -s https://api.github.com/repos/docker/compose/releases/latest \
+  #| grep browser_download_url \
+  #| grep docker-compose-Linux-x86_64 \
+  #| cut -d '"' -f 4 \
+  #| wget -qi -
+  #chmod +x docker-compose-Linux-x86_64
+  #sudo mv docker-compose-Linux-x86_64 /usr/local/bin/docker-compose
 
-  echo "\n\e[01;36mConfigurando permissões para o Docker...\e[00m\n"
-  sudo usermod -aG docker $USER
-  newgrp docker
-  
-  echo "\n\e[01;36mBaixando e instalando o Docker Compose...\e[00m\n"
-  curl -s https://api.github.com/repos/docker/compose/releases/latest \
-  | grep browser_download_url \
-  | grep docker-compose-Linux-x86_64 \
-  | cut -d '"' -f 4 \
-  | wget -qi -
-  chmod +x docker-compose-Linux-x86_64
-  sudo mv docker-compose-Linux-x86_64 /usr/local/bin/docker-compose
+#echo "Instalando o Command-line completion para o Docker Compose..."
+  #mkdir -p ~/.zsh/completion
+  #curl -L https://raw.githubusercontent.com/docker/compose/master/contrib/completion/zsh/_docker-compose > ~/.zsh/completion/_docker-compose
+  #fpath=(~/.zsh/completion $fpath)
+  #autoload -Uz compinit && compinit -i
+  #exec $SHELL -l
 
-  echo "\n\e[01;36mInstalando o Command-line completion para o Docker Compose...\e[00m\n"
-  mkdir -p ~/.zsh/completion
-  curl -L https://raw.githubusercontent.com/docker/compose/master/contrib/completion/zsh/_docker-compose > ~/.zsh/completion/_docker-compose
-  fpath=(~/.zsh/completion $fpath)
-  autoload -Uz compinit && compinit -i
-  exec $SHELL -l
+# Oracle VM VirtualBox 6
+  #wget https://download.virtualbox.org/virtualbox/6.0.14/Oracle_VM_VirtualBox_Extension_Pack-6.0.14.vbox-extpack
+  #wget https://download.virtualbox.org/virtualbox/6.0.14/virtualbox-6.0_6.0.14-133895~Ubuntu~bionic_amd64.deb
+  #sudo apt install -y ./virtualbox-6.0_6.0.14-133895~Ubuntu~bionic_amd64.deb
+  #sudo apt install -fy
+  #sudo VBoxManage extpack install --replace Oracle_VM_VirtualBox_Extension_Pack-6.0.14.vbox-extpack
 
-  # Oracle VM VirtualBox 6
-  wget https://download.virtualbox.org/virtualbox/6.0.14/Oracle_VM_VirtualBox_Extension_Pack-6.0.14.vbox-extpack
-  wget https://download.virtualbox.org/virtualbox/6.0.14/virtualbox-6.0_6.0.14-133895~Ubuntu~bionic_amd64.deb
-  sudo dpkg -i virtualbox-6.0_6.0.14-133895~Ubuntu~bionic_amd64.deb
-  sudo apt install -fy
-  sudo VBoxManage extpack install --replace Oracle_VM_VirtualBox_Extension_Pack-6.0.14.vbox-extpack
+#echo "Instalando o ZSH..."
+  #sudo apt install zsh -y 
 
-  echo "\n\e[01;36mInstalando o ZSH...\e[00m\n"
-  sudo apt install zsh -y 
+#echo "Instalando o Oh-My-ZSH..."
+  # sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
-  echo "\n\e[01;36mInstalando o Oh-My-ZSH...\e[00m\n"
-  sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+#echo "Instalando e Configurando o Tema Spaceship para ZSH..."
+  # git clone https://github.com/denysdovhan/spaceship-prompt.git "$ZSH_CUSTOM/themes/spaceship-prompt"
+  # ln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme"
+  # sed -i 's,robbyrussell,spaceship,g' ~/.zshrc
+  # echo '
+  # SPACESHIP_PROMPT_ORDER=(
+  #   time          # Time stamps section
+  #   user          # Username section
+  #   dir           # Current directory section
+  #   host          # Hostname section
+  #   git           # Git section (git_branch + git_status)
+  #   #hg            # Mercurial section (hg_branch  + hg_status)
+  #   package       # Package version
+  #   node          # Node.js section
+  #   docker        # Docker section
+  #   aws           # Amazon Web Services section
+  #   gcloud        # Google Cloud Platform section
+  #   venv          # virtualenv section
+  #   pyenv         # Pyenv section
+  #   dotnet        # .NET section
+  #   kubectl       # Kubectl context section
+  #   battery       # Battery level and status
+  #   exec_time     # Execution time
+  #   line_sep      # Line break
+  #   #vi_mode       # Vi-mode indicator
+  #   jobs          # Background jobs indicator
+  #   exit_code     # Exit code section
+  #   char          # Prompt character
+  # )
 
-  echo "\n\e[01;36mConfigurando o ZSH para funcionar o NVM...\e[00m\n"
-echo "export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion" >> ~/.zshrc
+  # SPACESHIP_USER_SHOW=always
+  # SPACESHIP_PROMPT_ADD_NEWLINE=false
+  # #SPACESHIP_CHAR_SYMBOL="❯"
+  # SPACESHIP_CHAR_SUFFIX=" "
+  # ' >> ~/.zshrc
 
-  echo "\n\e[01;36mConfigurando tema Dracula para o Oh-My-ZSH...\e[00m\n"
+#echo "Instalando DHARMA para o ZSH e Oh-My-ZSH..."
+  #sh -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma/zplugin/master/doc/install.sh)"
 
-  echo "\n\e[01;36mInstalando o dConf...\e[00m\n"
-  sudo apt install dconf-cli -y
+#echo "Congifurando plugins do ZSH..."
+  # echo '
+  # zinit light zdharma/fast-syntax-highlighting
+  # zinit light zsh-users/zsh-autosuggestions
+  # zinit light zsh-users/zsh-completions
+  # ' >> ~/.zshrc
 
-  echo "\n\e[01;36mInstalando o Tema Dracula para ZSH...\e[00m\n"
-  cd /tmp
-  git clone https://github.com/GalaticStryder/gnome-terminal-colors-dracula
-  cd gnome-terminal-colors-dracula
-  ./install.sh
+# echo "Instalando NVM (NodeJS Version Manager )..."
+#   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.1/install.sh | bash
 
-  echo "\n\e[01;36mInstalando e Configurando o Tema Spaceship para ZSH...\e[00m\n"
-  git clone https://github.com/denysdovhan/spaceship-prompt.git "$ZSH_CUSTOM/themes/spaceship-prompt"
-  ln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme"
-  sed -i 's,robbyrussell,spaceship,g' ~/.zshrc
-  exec $SHELL -
-  echo "# SPACESHIP
-SPACESHIP_PROMPT_ORDER=(
-  time
-  user          # Username section
-  dir           # Current directory section
-  host          # Hostname section
-  git           # Git section (git_branch + git_status)
-  exec_time     # Execution time
-  line_sep      # Line break
-  jobs          # Background jobs indicator
-  exit_code     # Exit code section
-  char          # Prompt character
-)
-SPACESHIP_TIME_SHOW=true
-SPACESHIP_USER_SHOW=always
-SPACESHIP_PROMPT_ADD_NEWLINE=false
-SPACESHIP_CHAR_SUFFIX=" "" >> ~/.zshrc
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-  echo "\n\e[01;36mInstalando plugins do ZSH...\e[00m\n"
-  sh -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma/zplugin/master/doc/install.sh)"
+# echo 'export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion' >> ~/.zshrc
+# source ~/.zshrc
 
-  echo "\n\e[01;36mCongifurando plugins do ZSH...\e[00m\n"
-  echo "# ZPLUGINS
-zplugin light zsh-users/zsh-autosuggestions
-zplugin light zsh-users/zsh-completions" >> ~/.zshrc
+# echo "Instalando Node LTS (via NVM)..."
+#   nvm install --lts
 
-  # echo "\n\e[01;36mInstalando o dotNET 3.0 SDK...\e[00m\n"
-  # wget -q https://packages.microsoft.com/config/ubuntu/19.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
-  # sudo dpkg -i packages-microsoft-prod.deb
-  # sudo apt-get update
-  # sudo apt-get install apt-transport-https
-  # sudo apt-get update
-  # sudo apt-get install dotnet-sdk-3.0
+#echo "Instalando o Yarn..."
+  #curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+  #echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+  #sudo apt update
+  #sudo apt install --no-install-recommends yarn
 
-  # echo "\n\e[01;36mBaixando XAMPP (Apache, PHP 7.3 e MariaDB)...\e[00m\n"
+#echo "Instalando Create-React-App (Node/NPM)..."
+  #npm install -g create-react-app
+
+#echo "Baixando XAMPP (Apache, PHP 7.3 e MariaDB)..."
   # wget https://sourceforge.net/projects/xampp/files/latest/download -O xampp.run
   # sudo chmod +x xampp.run
   # sudo ./xampp.run &
 
-  
+echo "Instalando Insomnia..."
+  wget https://updates.insomnia.rest/downloads/ubuntu/latest\?\&app\=com.insomnia.app\&source\=website -O insomnia_$(date +"%Y-%m-%d_%H-%M-%S").deb
 
-  # echo "\n\e[01;36m ...\e[00m\n"
+echo "Baixando Steam..."
+  cd /tmp
+  wget https://cdn.cloudflare.steamstatic.com/client/installer/steam.deb
+echo "Instalando Steam..."
+  sudo apt install -y ./steam.deb
+  sudo apt install -fy
+
+echo "Instalando o qBitTorrent..."
+  sudo apt install -y qbittorrent  
+
+echo "Instalando o FFMPEG..."
+  sudo apt install -y ffmpeg
+
+echo "Instalando o Lame..."
+  sudo apt install -y lame
+
+echo "Instalando o MPV Player..."
+  sudo apt install -y mpv
+
+echo "Instalando o SMPlayer..."
+  sudo apt install -y smplayer
+
+echo "Instalando o VLC..."
+  sudo apt install -y vlc
+
+echo "Instalando o Spotify..."
+  curl -sS https://download.spotify.com/debian/pubkey_0D811D58.gpg | sudo apt-key add - 
+  echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
+  sudo apt update
+  sudo apt install -y spotify-client
+  sudo apt install -y -f
+
+echo "Instalando o OBS Studio..."
+  sudo add-apt-repository -y ppa:obsproject/obs-studio
+  sudo apt install -y obs-studio
+
+#echo "Instalando o AnyDesk..."
+# #add repository key to Trusted software providers list
+# wget -qO - https://keys.anydesk.com/repos/DEB-GPG-KEY | sudo apt-key add -
+# #add the repository:
+# echo "deb http://deb.anydesk.com/ all main" > /etc/apt/sources.list.d/anydesk-stable.list
+# #update apt cache:
+# sudo apt update
+# #install anydesk:
+# sudo apt install -y anydesk
+
+echo "Instalando fontes Powerline..."
+  sudo apt install fonts-powerline -y
+
+echo "Instalando fontes da Microsoft..."
+  echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | sudo debconf-set-selections
+  sudo apt install ttf-mscorefonts-installer -y
+
+# echo "Instalando fontes Fira Code..."
+#   cd /tmp
+#   wget https://github.com/tonsky/FiraCode/releases/download/2/FiraCode_2.zip
+#   unzip FiraCode_2.zip
+#   mkdir -p ~/.fonts
+#   mv ttf/* ~/.fonts
+
+# echo "Instalando o elementary Tweaks..."
+#   sudo add-apt-repository ppa:philip.scott/elementary-tweaks -y
+#   sudo apt install elementary-tweaks -y
+
+echo "Instalando o GNOME Tweaks"
+  sudo apt install -y gnome-tweaks
+
+echo "Instalando o Tema Dracula no GNOME Terminal"
+  cd /tmp
+  git clone https://github.com/dracula/gnome-terminal
+  cd gnome-terminal
+  ./install.sh
+  cd ..
+  rm gnome-terminal -rf
+
+#echo "Instalando o Papirus Icon Theme..."
+#echo "Adicionando o repositório do Papirus Themes..."
+#   sudo add-apt-repository ppa:papirus/papirus -y
+#echo "Instalando o Papirus Icon Theme..."
+#   sudo apt install papirus-icon-theme -y
+#echo "Instalando o Papirus Folders..."
+#   sudo apt install papirus-folders -y
+#   papirus-folders -C yaru #change color
+
+echo "Realizando última atualização dos pacotes..."
+  sudo apt update -y
+  sudo apt upgrade -y
+
+echo "Removendo pacotes que não são mais necessários..."
+  sudo apt autoremove -y
+
+echo "Fim da Pós Instalação..."
